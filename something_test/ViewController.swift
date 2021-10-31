@@ -14,7 +14,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+ 
+    @IBOutlet var mainLabel: UILabel!
+    @IBOutlet var nameField: UITextField!
+    
+    @IBAction func btnSend(_ sender: UIButton) {
+        mainLabel.text = "Hello " + nameField.text!
+    }
+    
+    @IBAction func nextBtn(_ sender: UIButton) {
+        let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "NextView") as! NextViewController
+        
+        nextViewController.modalPresentationStyle = .fullScreen
+        nextViewController.reciever = "Hello! \(nameField.text!)"
+        
+        self.present(nextViewController, animated: false, completion: nil)
+    }
+    
+    @IBAction func segueNextBtn(_ sender: UIButton) {
+        performSegue(withIdentifier: "nextSegue", sender: nil)
+    }
+    
 }
 
